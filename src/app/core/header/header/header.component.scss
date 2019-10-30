@@ -1,0 +1,31 @@
+@import '../../../../variables.scss';
+
+.app-header{
+    background-image: url("/assets/images/header-bg.jpg");
+    height: 120px;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.loggedin-user{
+    color: $color_white;
+    float: right;
+    cursor: default;
+    .user-icon {
+        display: inline-block;
+        background: $color_red;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        border-radius: 50%;
+    }
+    .name{
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+    }
+}

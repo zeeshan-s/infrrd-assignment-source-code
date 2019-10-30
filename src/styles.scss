@@ -1,0 +1,283 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import './variables.scss';
+body{
+    margin: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+.display-inline-flex{
+    display: inline-flex
+}
+.display-block{
+    display: block;
+}
+.container {
+    width: 1170px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.row{
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+[class^="column"]{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.margin-top{
+    margin-top: 20px;
+}
+.margin-left-10{
+    margin-left: 10px;
+}
+.column-30{
+    flex: 0 0 calc(30% - 30px);
+    max-width: calc(30% - 30px);
+}
+.column-70{
+    flex: 0 0 calc(70% - 30px);
+    max-width: calc(70% - 30px);
+}
+
+.rooms-list {
+    padding: 30px 15px;
+    border: 1px solid #ddd;
+    margin: 15px;
+    border-radius: 5px;
+    .room-icon {
+        display: inline-flex;
+        width: 100px;
+        font-size: 40px;
+    }
+    .room-content {
+        display: inline-flex;
+        width: calc(100% - 110px);
+        .room-name {
+            display: flex;
+            width: calc(100% - 200px);
+            font-size: 24px;
+        }
+        .button-list {
+            display: flex;
+            width: 200px;
+            .room-status {
+                display: flex;
+                width: 100%;
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+                align-items: center;
+            }
+            button {
+                width: 100%;
+                cursor: pointer;
+                text-align: center;
+                background: #39a77a;
+                border: 0;
+                color: #fff;
+                font-size: 14px;
+                font-weight: bold;
+                text-transform: uppercase;
+                padding: 10px;
+                border-radius: 5px;
+                &:hover,&:active,&:focus{
+                    background: #297959
+                }
+            }
+        }
+
+    }
+}
+.booking-column{
+    background: $color_dark_bg;
+    color: $color_white;
+    padding: 15px;
+    border-radius: 3px;
+    height: 350px;
+}
+.card-footer{
+    ul {
+        padding: 0;
+        margin: 0;
+        border-top: 1px solid #ddd;
+        margin-top: 45px;
+        padding-top: 10px;
+        li {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            color: #989090;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+}
+.date-input{
+    width: calc(100% - 10px);
+    height: 30px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.time-input{
+    input{
+        margin-top: 10px;
+        padding: 5px 10px;
+        margin-right: 10px;
+    }
+    
+}
+.search-box-footer{
+    margin-top: 100px;
+    text-align: right;
+    position: relative;
+}
+.search-btn {
+    cursor: pointer;
+    background: #FF9800;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: 1px solid #f5bf70;
+    &:hover,&:active,&:focus{
+        outline: 0;
+        background: #f5ab06
+    }
+}
+.modal {
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    top: 0;
+    height: 100%;
+}
+
+.modal:after {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.61);
+    content: '';
+    top: 0;
+    z-index: -1;
+    left: 0;
+}
+
+.modla-header {
+    background: $color_dark_bg;
+    color: $color_white;
+    font-size: 18px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.modal-content {
+    width: 600px;
+    margin: auto;
+    background: $color_white;
+}
+
+span.modal-close {
+    position: absolute;
+    right: 9px;
+    font-size: 14px;
+    top: 12px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 15px;
+    float: left;
+}
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: right;
+    float: left;
+    width: calc(100% - 30px);
+}
+
+.form-lbl {
+    display: inline-block;
+    width: 30%;
+    float: left;
+}
+
+.form-input {
+    display: inline-block;
+    float: left;
+    width: 70%;
+}
+
+.form-row {
+    width: 100%;
+    float: left;
+    margin: 10px 0;
+}
+
+.form-input textarea, .form-input input[type="date"] {
+    width: 90%;
+}
+.form-input input{
+    height: 25px;
+}
+
+.form-input textarea {
+    height: 100px;
+}
+.all-meetings {
+    margin-bottom: -20px;
+    margin-top: 10px;
+    height: 0px;
+    overflow: hidden;
+    &.expand{
+        height: initial;
+    }
+}
+
+span.scheduled-user {
+    margin-left: 30px;
+}
+
+span.scheduled-time {
+    margin-left: 30px;
+}
+.error-msg{
+    color:red;
+    font-weight: bold;
+    font-size: 12px;
+}
+.alert-box {
+    position: fixed;
+    background: #29c129;
+    top: 40px;
+    right: 30px;
+    color: #fff;
+    min-width: 200px;
+    padding: 20px 30px;
+    border-radius: 5px;
+}
+.booking-validations{
+    position: absolute;
+    top: -30px;
+}
+
+.cursur-pointer{
+    cursor: pointer;
+}

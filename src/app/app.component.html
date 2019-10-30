@@ -1,3 +1,110 @@
-<h1>
-  {{title}}
-</h1>
+<app-header></app-header>
+
+<main>
+    <div class="container margin-top">
+      <div class="row">
+          <aside class="column-30 booking-column">
+            <h2> Booking Details</h2>
+            <label display-block>Date:</label>
+            <input type="date" class="date-input" [(ngModel)]="bookingRequest.date">
+            <label display-block>Time:</label>
+            <div class="time-input">
+                <input type="time" [(ngModel)]="bookingRequest.time.from">
+                <span>To</span>
+                <input type="time" class="margin-left-10" [(ngModel)]="bookingRequest.time.to">
+            </div>
+            <div class="search-box-footer">
+              <div class="error-msg booking-validations">
+                  {{bookingError}}
+              </div>
+              <button type="button" class="search-btn" (click)="searchRooms()">Search</button>
+            </div>
+          </aside>
+          <section class="column-70">
+            <div class="rooms-list" *ngFor="let room of meetingRooms; let roomIndex = index">
+              <div class="room-icon"> # </div>
+              <div class="room-content">
+                <div class="room-name">
+                  {{room.name}}
+                </div>
+                <div class="button-list">
+                  <span class="room-status">{{room.status}}</span>
+                  <button type="button" (click)="confirmBooking(room)">Book</button>
+                </div>
+              </div>
+              <div class="card-footer">
+                <ul>
+                  <li (click)="room.contentCollapsed = !room.contentCollapsed">
+                    View All Meetings
+                  </li>
+                </ul>
+                <div class="all-meetings" [ngClass]="{'expand': room.contentCollapsed}">
+                  <div class="meeting-date" *ngFor="let booking of room.bookings; let i = index">
+                      <span class="scheduled-date">{{booking.date}}</span>
+                      <span class="scheduled-time">{{booking.time.from}} to {{booking.time.to}}</span>
+                      <span class="scheduled-user">{{booking.userName}}</span>
+                      <span class="scheduled-user error-msg cursur-pointer" (click)="deleteBooking(roomIndex, i)">Delete</span>
+                  </div>
+                  <div *ngIf="room.bookings.length == 0">
+                    <span class="error-msg">
+                      There no bookings found yet
+                    </span>
+                  </div>
+              </div>
+              </div>
+            </div>
+          </section>
+      </div>
+      
+    </div>
+</main>
+<div class="modal" *ngIf="toggleModel">
+    <div class="modal-content">
+    <div class="modla-header">Confirm Booking <span class="modal-close" (click)="toggleModel = false">x</span></div>
+    <div class="modal-body">
+        <div class="form-row">
+    
+        <div class="form-lbl">Room Name</div>
+        <div class="form-input">{{selectedRoom.name}}</div>
+    </div>
+    <div class="form-row">
+    
+        <div class="form-lbl">Date:</div>
+        <div class="form-input">
+          <input type="date" [(ngModel)]="bookingRequest.date">
+        
+        </div>
+    </div>
+    <div class="form-row">
+    
+        <div class="form-lbl">Time:</div>
+        <div class="form-input">
+          <input type="time" [(ngModel)]="bookingRequest.time.from">
+          <span>To</span>
+          <input type="time" [(ngModel)]="bookingRequest.time.to">
+          </div>
+    </div>
+    <div class="form-row">
+    
+        <div class="form-lbl">Agenda:</div>
+        <div class="form-input"><textarea [(ngModel)]="bookingRequest.agenda"></textarea></div>
+    </div>
+    <div class="form-row">
+    
+        <div class="form-lbl">User Name:</div>
+        <div class="form-input"><input type="text" [(ngModel)]="bookingRequest.userName" ></div>
+    </div>
+    <div class="for-row error-msg" *ngIf="bookingError">
+      {{bookingError}}
+    </div>
+        </div>
+    <div class="modal-footer">
+        <button class="confirm-btn" (click)="bookRoom();">Book</button>
+    </div></div>
+</div>
+
+<div class="alert-box" *ngIf="showAllertMessage">
+  {{showAllertMessage}}
+</div>
+
+<app-loading-spinner></app-loading-spinner>
